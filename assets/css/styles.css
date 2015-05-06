@@ -74,6 +74,10 @@
 	text-decoration: none;
 }
 
+.nav a:hover
+{
+	background: #555;
+}
 
 /* -----------------------
 Стили, связанные с текстом
