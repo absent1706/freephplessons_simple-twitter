@@ -1,0 +1,218 @@
+/* -----------------------
+Стили, связанные с текстом
+Все они НЕОБЯЗАТЕЛЬНЫ. Просто с ними ну совсем красиво =)
+------------------------*/
+
+body
+{
+	margin: 0;   /* документ не имеет отступов от края окна. Если мы указываем одну цифру, то это значит, что отступ будет такой СО ВСЕХ СТОРОН*/
+	color: #333; /* это цвет текста внутри документа */
+	font: 1em "Helvetica Neue", Helvetica, Arial, Geneva, sans-serif; /* em - это размер текста по умолчанию (например, 12pt на десктопных компьютерах) */
+	/* названия шрифтов перечислены в порядке убывания приоритета: если недоступен более приоритетный шрифт, то будет использоваться менее приоритетный */
+}
+
+h1,h2,h3,h4,h5,h6
+{
+	font-weight: 500; /* степень жирности мы можем указывать значениями 100, 200, ..., 900 */
+}
+
+p
+{
+	line-height: 1.5; /* чисто для красоты мы делаем большой междустрочный интервал в абзаце */
+}
+
+
+hr /* красиво оформляем линию, чтоб была серенькой и перед ней и после неё были отступы. */
+{
+	margin-top: 1em;
+	margin-bottom: 2em;
+	border: 0;                  /* толщина рамки (верхняя её грань переопределяется ниже) */
+	border-top: 1px solid #ddd; /* указаны соответственно толщина, стиль и цвет ВЕРХНЕГО края рамки */
+}
+
+
+/* -----------------------
+Основные стили, задающие структуру документа.
+------------------------*/
+
+.container
+{
+	max-width: 70em; /* Задание максимальной ширины позволяет сайту не "расплываться" */
+	margin: 0 auto;  /* auto указывает браузеру на то, что отступ надо рассчитать самостоятельно, поместив элемент по центру */
+					 /*  т.е. по горизонтали текст будет выровнен по центру*/
+}
+
+.header
+{
+	color: white;
+	background: #555;
+	padding: 1.5em 3em; /* 1.5em сверху и снизу; 3em справа и слева */
+}
+
+.header-heading { margin: 0; }
+
+.nav-bar
+{
+	background: #000;
+	padding: 1em 3em;
+}
+
+.content
+{
+	overflow: hidden; /* тонкости этого свойства я не очень хорошо знаю, но именно онон отвечает за то, чтобы элементы не налазили друг на друга. Уберите его и посмотрите, что будет */
+	padding: 2em 3em;
+	background-color: #fff;
+}
+
+.main
+{
+	float: left; /* Это свойство помогает находиться рядом нескольким блокам (здесь - .main и .aside). Оно выравнивает элемент по левому краю, а все остальные элементы, вроде текста, обтекают его по правой стороне. */
+	width: 65%; /* проценты берутся от ширины/высоты экрана */
+	margin-right: 5%;
+	margin-bottom: 1em;
+}
+.aside
+{
+	float: left; /* Это свойство помогает находиться рядом нескольким блокам (здесь - .main и .aside). Оно выравнивает элемент по левому краю, а все остальные элементы, вроде текста, обтекают его по правой стороне. */
+	width: 30%;  /* Обратите внимание, что .main->width:65% +  .main->margin-right:5% + .aside->width:30% = 100% ширины экрана */
+	margin-bottom: 1em;
+}
+.footer
+{
+	color: #fff;
+	background: #000;
+	padding: 2em 3em;
+}
+
+/* -----------------------
+Стили навигационной панели
+------------------------*/
+
+.nav
+{
+	margin: 0;  /* margin и padding - два вида отступов (см. интернеты) */
+	padding: 0;
+}
+
+.nav li
+{
+	display: inline-block; /* Отображать элементы списка В ОДНОЙ СТРОКЕ (inline), и при этом не позволять разрывать текст внутри  элемента при переносе (block) */
+	margin: 0 1em 0 0; 	   /* Поочередно устанавливается отступ от верхнего, правого, нижнего и левого края. */
+}
+
+.nav a
+{
+	display: inline-block;
+	padding: 5px;
+	color: white;
+	text-decoration: none;
+}
+
+.nav a:hover
+{
+	background-color: #555;
+}
+
+
+/* -----------------------
+Single styles
+------------------------*/
+
+/*.img-responsive { max-width: 100%; }*/
+
+/*
+.btn
+{
+	color: #fff !important;
+	background-color: royalblue;
+	border-color: #222;
+	display: inline-block;
+	padding: .5em 1em;
+	margin-bottom: 0;
+	font-weight: 400;
+	line-height: 1.2;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	border: 1px solid transparent;
+	border-radius: .2em;
+	text-decoration: none;
+}
+
+.btn:hover
+{
+	color: #fff !important;
+	background-color: green;
+}
+
+.btn:focus
+{
+	color: #fff !important;
+	background-color: black;
+}
+
+.btn:active
+{
+	color: #fff !important;
+	background-color: red;
+}*/
+
+
+/*
+.list-unstyled
+{
+	padding-left: 0;
+	list-style: none;
+}
+
+
+.list-inline
+{
+	padding-left: 0;
+	margin-left: -5px;
+	list-style: none;
+}
+
+.list-inline > li
+{
+	display: inline-block;
+	padding-right: 5px;
+	padding-left: 5px;
+}*/
+
+
+/*blockquote
+{
+	padding: 1em 2em;
+	margin: 0 0 2em;
+	border-left: 5px solid #eee;
+}*/
+/*table
+{
+	background-color: transparent;
+	border-spacing: 0;
+	border-collapse: collapse;
+	border-top: 1px solid #ddd;
+}
+
+.table
+{
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 20px;
+}
+
+th, td
+{
+	padding: .5em 1em;
+	vertical-align: top;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+}*/
+/*
+a:link { color: royalblue; }
+a:visited { color: purple; }
+a:focus { color: black; }
+a:hover { color: green; }
+a:active { color: red; }*/
