@@ -68,30 +68,32 @@
                 </div>
                 <div class="aside">
                     <h3>Поиск по сайту</h3>
-                    <form id="login-form" action="#" method="post">
+                    <form id="search-form">
                     	<div class="form-group">
-                    		<input type="text" placeholder="Type text to search ..." id="search" class="form-control" />
+                    		<input type="text" placeholder="Type text to search ..." name="search" id="search" class="form-control" />
                     		<input type="submit" value="Искать!" />
                     	</div>
                     </form>
 
-                    <h3>Авторизация</h3>
-                    <form id="login-form" action="#" method="post">
-                    	<div class="form-group">
-                    		<input type="text" placeholder="Username" id="username" class="form-control" />
-                    	</div>
-                    	<div class="form-group">
-                    		<input type="password" placeholder="Password" id="password" class="form-control" />
-                    	</div>
-                    	<div class="form-group">
-                    		<small>
-                    			<a class="block" href="#">Забыли пароль?</a>
-                    			<a class="block" href="#">Регистрация</a>
-                    		</small>
-                    	</div>
-                    	<div class="form-group">
-                    		<input type="submit" value="Вход" />
-                    	</div>
+                   <h3>Регистрация</h3>
+                    <form id="login-form" action="" method="post">
+                        <div class="form-group">
+                            <input type="text" placeholder="Username" id="username" name="username" class="form-control" />
+                            <small id="username-hint"></small>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" placeholder="Password" id="password" name="password" class="form-control" />
+                            <small id="password-hint"></small>
+                        </div>
+                        <div class="form-group">
+                            <small>
+                                <a class="block" href="#">Забыли пароль?</a>
+                                <!-- <a class="block" href="#">Регистрация</a> -->
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Зарегистрироваться!" />
+                        </div>
                     </form>
 
                 </div>
