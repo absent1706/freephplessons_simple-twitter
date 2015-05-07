@@ -129,6 +129,13 @@ hr /* красиво оформляем линию, чтоб была серен
 	display: block;
 }
 
+.form-control.error {
+	border-color: red;
+}
+
+.hint {
+	color: lightgrey;
+}
 /*.img-responsive { max-width: 100%; }*/
 
 /*
