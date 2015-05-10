@@ -15,6 +15,5 @@ if (!empty($_GET['action']))
         echo json_encode([
             'result' => !in_array($emailToCheck, $userEmails)
             ]);
-        
     }
 }
