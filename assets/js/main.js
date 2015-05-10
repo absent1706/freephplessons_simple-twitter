@@ -18,10 +18,36 @@
     document.getElementById("password").onkeyup = checkCredentialsLength;
 
 /* Код, отменяющий отправку формы с некорректными данными */
-document.getElementById("registerSubmit").onclick = function(event) {
-  var form = event.target.closest('form');
-  if (form.getElementsByClassName('error').length != 0) {
-    alert('Пожалуйста, введите корректные данные');
-    event.preventDefault();
-  }
-};
+    document.getElementById("registerSubmit").onclick = function(event) {
+      var form = event.target.closest('form');
+      if (form.getElementsByClassName('error').length != 0) {
+        alert('Пожалуйста, введите корректные данные');
+        event.preventDefault();
+      }
+    };
+
+/* Код, добавляющий ajax-проверку уникальности вводимого email */
+    function checkEmailUniqueness() {
+        var params = 'action=check_email_uniqueness&email=' + encodeURIComponent(this.value);
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'api/authorize.php?' + params, true);
+        xhr.send();
+
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState != 4) return;
+            if (xhr.status != 200) {
+                console.log('Ajax failed with status ' + xhr.status + ': ' + xhr.statusText);
+            } else {
+                var hint = document.getElementById("email-hint");
+                if (JSON.parse(xhr.responseText).result) {
+                    hint.innerHTML = "";
+                    document.getElementById("email").classList.remove("error");
+                } else {
+                    hint.innerHTML = "введенный email занят";
+                    document.getElementById("email").classList.add("error");
+                }                   
+            }
+        }
+    }
+
+    document.getElementById("email").onchange = checkEmailUniqueness; //событие change сгенерируется после того, как поле будет изменено и фокус с него будет убран
