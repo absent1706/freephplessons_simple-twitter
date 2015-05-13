@@ -28,6 +28,9 @@
 
 /* Код, добавляющий ajax-проверку уникальности вводимого email */
     function checkEmailUniqueness() {
+        document.getElementById("email-hint").innerHTML = ""; // вначале убираем сообщение об ошибке, если оно было. Чтобы человек, введя новое мыло вместо занятого, не видел сообщения об ошибке, если мыло окажется свободным.
+        document.getElementById("email").classList.remove("error");
+        
         var params = 'action=check_email_uniqueness&email=' + encodeURIComponent(this.value);
         var xhr = new XMLHttpRequest();
         xhr.open('GET', 'api/authorize.php?' + params, true);
@@ -35,18 +38,15 @@
 
         xhr.onreadystatechange = function() {
             if (xhr.readyState != 4) return;
-            if (xhr.status != 200) {
-                console.log('Ajax failed with status ' + xhr.status + ': ' + xhr.statusText);
-            } else {
-                var hint = document.getElementById("email-hint");
-                if (JSON.parse(xhr.responseText).result) {
-                    hint.innerHTML = "";
-                    document.getElementById("email").classList.remove("error");
-                } else {
-                    hint.innerHTML = "введенный email занят";
+            if (xhr.status == 200) {
+                if (JSON.parse(xhr.responseText).result === false) {
+                    document.getElementById("email-hint").innerHTML = "введенный email занят";
                     document.getElementById("email").classList.add("error");
-                }                   
+                }
             }
+            else {
+                console.log('Ajax failed with status ' + xhr.status + ': ' + xhr.statusText);
+            }                   
         }
     }
 
