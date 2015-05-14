@@ -138,7 +138,11 @@ hr /* красиво оформляем линию, чтоб была серен
 }
 /*.img-responsive { max-width: 100%; }*/
 
-/*
+.nav li.navbar-right
+{
+	float:right;
+}
+
 .btn
 {
 	color: #fff !important;
@@ -174,7 +178,7 @@ hr /* красиво оформляем линию, чтоб была серен
 {
 	color: #fff !important;
 	background-color: red;
-}*/
+}
 
 
 /*
