@@ -59,36 +59,24 @@ $authUser = $pdo->query("SELECT * FROM users")->fetch();
                         <h1>Последние записи</h1>
                         <hr>
 
-                        <!-- Paragraphs -->
-                        <h3>Запись 1</h3>
-                        <small>Автор: <a href="#">admin</a>. Опубликована 05.05.2015 15:23</small>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis, in. Quas magnam voluptatum cupiditate labore dignissimos voluptate, consequuntur rerum alias consequatur eius, nobis dolore, numquam velit quaerat voluptatibus incidunt! Quis at illum doloribus quibusdam velit quidem laudantium architecto a saepe magni consequatur fugit dignissimos vel officia corporis dolore debitis, hic quam, ad esse quia aliquam voluptates voluptatibus veniam. Porro sit dolor nihil molestias inventore, iusto? Nulla nihil ea ut, quas at possimus molestias doloremque, saepe porro, consectetur mollitia ipsa quaerat ratione adipisci perspiciatis architecto, fugiat assumenda debitis dolore corporis illum facere magni hic suscipit. Fugiat voluptates corrupti itaque, dolorem veritatis!
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident facilis aliquam eos dolore neque eligendi odio obcaecati labore qui unde. Soluta repudiandae facere explicabo eius placeat quis, iure, nisi doloremque provident, ut animi ipsum autem porro earum non! Velit adipisci, impedit atque, commodi eum illo nisi est error dicta quidem.
-                            <a href="#" class="more-link">Читать/смотреть далее →</a>
-                        </p>
+                        <?php 
+                            $query = "SELECT * FROM posts";
+                            $posts = $pdo->query($query);
+                            while ($post = $posts->fetch()):
+                        ?>
 
-                        <hr>
-
-                        <!-- Paragraphs -->
-                        <h3>Запись 2</h3>
-                        <small>Автор: <a href="#">Nick</a>. Опубликована 05.05.2015 11:12</small>                    
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat hic mollitia sed ex doloribus. Nesciunt accusantium laudantium, minus, numquam fugiat quas reprehenderit. Necessitatibus qui, consequatur quibusdam pariatur beatae doloremque, maxime commodi totam reiciendis? Obcaecati porro natus, enim quod! Sequi numquam exercitationem velit sit, minima earum eveniet. Ex quam perspiciatis cupiditate corrupti dolores laboriosam ab nam, iste ducimus mollitia. Praesentium eos, ut, a repudiandae debitis deserunt sint veritatis doloribus quisquam nostrum eius. Officia, quam consequatur vero distinctio voluptas impedit asperiores id aspernatur eveniet illo, illum expedita repudiandae et quae aut laborum iusto! Aspernatur aperiam repellendus quos, doloribus nobis maiores fuga recusandae.
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati ad vero ratione molestiae perferendis! Voluptatibus explicabo tempora voluptatum aperiam reiciendis dolore nulla perferendis, neque necessitatibus deleniti officiis commodi non reprehenderit iure magni sit distinctio laudantium? Sunt praesentium et, ullam deleniti nostrum ut blanditiis rem officiis voluptas at nulla perferendis cumque?
-                            <a href="#" class="more-link">Читать/смотреть далее →</a>
-                        </p>
-                        <hr>
-
-                        <!-- Paragraphs -->
-                        <h3>Запись 3</h3>
-                        <small>Автор: <a href="#">Bob</a>. Опубликована 16.04.2015 9:15</small>                    
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat hic mollitia sed ex doloribus. Nesciunt accusantium laudantium, minus, numquam fugiat quas reprehenderit. Necessitatibus qui, consequatur quibusdam pariatur beatae doloremque, maxime commodi totam reiciendis? Obcaecati porro natus, enim quod! Sequi numquam exercitationem velit sit, minima earum eveniet. Ex quam perspiciatis cupiditate corrupti dolores laboriosam ab nam, iste ducimus mollitia. Praesentium eos, ut, a repudiandae debitis deserunt sint veritatis doloribus quisquam nostrum eius. Officia, quam consequatur vero distinctio voluptas impedit asperiores id aspernatur eveniet illo, illum expedita repudiandae et quae aut laborum iusto! Aspernatur aperiam repellendus quos, doloribus nobis maiores fuga recusandae.
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati ad vero ratione molestiae perferendis! Voluptatibus explicabo tempora voluptatum aperiam reiciendis dolore nulla perferendis, neque necessitatibus deleniti officiis commodi non reprehenderit iure magni sit distinctio laudantium? Sunt praesentium et, ullam deleniti nostrum ut blanditiis rem officiis voluptas at nulla perferendis cumque?
-                            <a href="#" class="more-link">Читать/смотреть далее →</a>
-                        </p>
-                        <hr>
+                            <?php 
+                                $query = "SELECT * FROM users WHERE id=" . $post['user_id'];
+                                $user = $pdo->query($query)->fetch();
+                            ?>                        
+                                <h3><?= $post['title']; ?></h3>
+                                <small>Автор: <a href="#"><?= $user['name'] ?></a>. Опубликована <?= $post['created_at']; ?></small>
+                                <p>
+                                    <?= substr($post['body'],0,100); ?> ...
+                                    <small><a href="#" class="more-link">на страницу твита →</a></small>
+                                </p>
+                                <hr>
+                            <?php endwhile; ?>
                     </div>
                     <div class="aside">
                         <img src="<?= $authUser['avatar_path'] ?>" width="128" height="128"/>
