@@ -60,23 +60,18 @@ $authUser = $pdo->query("SELECT * FROM users")->fetch();
                         <hr>
 
                         <?php 
-                            $query = "SELECT * FROM posts";
+                            $query = "SELECT posts.*, users.name as username FROM users,posts WHERE users.id=posts.user_id";
                             $posts = $pdo->query($query);
                             while ($post = $posts->fetch()):
                         ?>
-
-                            <?php 
-                                $query = "SELECT * FROM users WHERE id=" . $post['user_id'];
-                                $user = $pdo->query($query)->fetch();
-                            ?>                        
                                 <h3><?= $post['title']; ?></h3>
-                                <small>Автор: <a href="#"><?= $user['name'] ?></a>. Опубликована <?= $post['created_at']; ?></small>
+                                <small>Автор: <a href="#"><?= $post['username'] ?></a>. Опубликована <?= $post['created_at']; ?></small>
                                 <p>
                                     <?= substr($post['body'],0,100); ?> ...
                                     <small><a href="#" class="more-link">на страницу твита →</a></small>
                                 </p>
                                 <hr>
-                            <?php endwhile; ?>
+                        <?php endwhile; ?>
                     </div>
                     <div class="aside">
                         <img src="<?= $authUser['avatar_path'] ?>" width="128" height="128"/>
